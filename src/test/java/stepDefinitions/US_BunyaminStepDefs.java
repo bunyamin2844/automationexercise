@@ -49,11 +49,11 @@ public class US_BunyaminStepDefs {
         Assert.assertEquals("title","title");
 
     }
-    @Then("The products list is visible")
-    public void the_products_list_is_visible() {
-        Assert.assertTrue(page.productList.isDisplayed());
+   // @Then("The products list is visible")
+   // public void the_products_list_is_visible() {
+   //     Assert.assertTrue(page.productList.isDisplayed());
 
-    }
+   // }
     @Then("Click on {string} of first product")
     public void click_on_of_first_product(String string) {
         Driver.waitAndClick(page.viewProduct);
@@ -83,11 +83,11 @@ public class US_BunyaminStepDefs {
 //    }
 
 
-    @Then("Verify {string} is visible")
-    public void verifySEARCHEDPRODUCTSIsVisible(String str) {
-        Assert.assertTrue(page.displayedProduct01.isDisplayed());
-        
-    }
+   // @Then("Verify {string} is visible")
+   // public void verifySEARCHEDPRODUCTSIsVisible(String str) {
+   //     Assert.assertTrue(page.displayedProduct01.isDisplayed());
+   //
+   // }
 
     @Then("Verify all the products related to search are visible")
     public void verifyAllTheProductsRelatedToSearchAreVisible() {
