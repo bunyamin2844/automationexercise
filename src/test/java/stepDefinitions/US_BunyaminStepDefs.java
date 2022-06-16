@@ -3,6 +3,7 @@ package stepDefinitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import org.junit.Test;
+import pages.US_AyselPage;
 import pages.US_BunyaminPage;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
@@ -11,11 +12,25 @@ import utilities.Driver;
 public class US_BunyaminStepDefs {
 
     US_BunyaminPage page =new US_BunyaminPage();
+    US_AyselPage pageAysel = new US_AyselPage();
 
 
     @Then("Click on {string} button")
-    public void click_on_button(String string) {
-        Driver.waitAndClick(page.testCaseButtn);
+    public void click_on_button(String button) {
+
+        if(button.equalsIgnoreCase("Products")){
+            Driver.waitAndClick(page.productsButton);
+        }else if (button.contains("Test")){
+            Driver.waitAndClick(page.testCaseButtn);
+        } else if (button.equals("View Product")){
+            Driver.waitAndClick(page.viewProduct);
+        }else if(button.contains("Cart")){
+            Driver.waitAndClick(page.viewProduct); // view cart button locate eklenecek
+        }else if(button.contains("Signup")){
+            Driver.waitAndClick(pageAysel.SigninLoginButton);
+        }else if(button.contains("Contact")){
+            //Driver.waitAndClick(page.);
+        }
 
     }
     @Then("Verify user is navigated to test cases page successfully")
@@ -69,7 +84,7 @@ public class US_BunyaminStepDefs {
 
 
     @Then("Verify {string} is visible")
-    public void verifySEARCHEDPRODUCTSIsVisible() {
+    public void verifySEARCHEDPRODUCTSIsVisible(String str) {
         Assert.assertTrue(page.displayedProduct01.isDisplayed());
         
     }
