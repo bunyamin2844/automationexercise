@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasItem;
 
 public class API_US01_03 {
     Response response;
@@ -37,7 +38,7 @@ public class API_US01_03 {
                 .when()
                 .get(productList);
 
-        //  response.prettyPrint();
+         response.prettyPrint();
 
         ProductList productList;
         productList = objectMapper.readValue(response.asString(), ProductList.class);
@@ -50,7 +51,7 @@ public class API_US01_03 {
         for (int i = 0; i < productList.getProducts().size(); i++) {
             if (getPriceStringToInt(productList.getProducts().get(i).getPrice()) < 1000) {
                 System.out.println(getPriceStringToInt(productList.getProducts().get(i).getPrice()));
-                WriteToTxt.saveTitle("bunyamin", String.valueOf(getPriceStringToInt(productList.getProducts().get(i).getPrice())) + " , ");
+                WriteToTxt.saveTitle("Log01", String.valueOf(getPriceStringToInt(productList.getProducts().get(i).getPrice())) + " , ");
             }
         }
 
@@ -59,7 +60,7 @@ public class API_US01_03 {
                 .stream()
                 .map(t -> getPriceStringToInt(t.getPrice()))
                 .filter(t -> t < 1000)
-                .forEach(t -> WriteToTxt.saveTitle("bun", t + " "));
+                .forEach(t -> WriteToTxt.saveTitle("Log02", t + " "));
 
 
         // status code
@@ -80,6 +81,7 @@ public class API_US01_03 {
         Assertions.assertEquals(response.statusCode(), 200);
 
         brandList = objectMapper.readValue(response.asString(), BrandList.class);
+
         int polo = 0;
         int HM = 0;
         Set<String> markalarSet = new HashSet<>();
@@ -95,25 +97,29 @@ public class API_US01_03 {
             markalarSet.add(brandList.getBrands().get(i).getBrand());
 
         }
+
         Assertions.assertEquals(polo,6);
+        System.out.println("polo = " + polo);
+
         Assertions.assertEquals(HM,5);
+        System.out.println("HM = " + HM);
 
         Assertions.assertEquals(markalarSet.size(),8);
-        System.out.println(markalarSet.size());
+        System.out.println(" Marka sayisi :"+markalarSet.size());
 
 
 
 
-        Assertions.assertEquals(brandList.getBrands()
-                .stream().filter(t -> t.getBrand()
-                        .equals("Polo")).count(), 6);
-        // hnm marka 5 tane
-        Assertions.assertEquals(brandList.getBrands()
-                .stream().filter(t -> t.getBrand()
-                        .equals("H&M")).count(), 5);
-        // 8 farkli urun cesidi
-        Assertions.assertEquals(brandList.getBrands()
-                .stream().map(Brand::getBrand).distinct().count(), 8);
+//        Assertions.assertEquals(brandList.getBrands()
+//                .stream().filter(t -> t.getBrand()
+//                        .equals("Polo")).count(), 6);
+//        // hnm marka 5 tane
+//        Assertions.assertEquals(brandList.getBrands()
+//                .stream().filter(t -> t.getBrand()
+//                        .equals("H&M")).count(), 5);
+//        // 8 farkli urun cesidi
+//        Assertions.assertEquals(brandList.getBrands()
+//                .stream().map(Brand::getBrand).distinct().count(), 8);
 
     }
 
