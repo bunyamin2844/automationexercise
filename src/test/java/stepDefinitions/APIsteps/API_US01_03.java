@@ -94,6 +94,8 @@ public class API_US01_03 {
                 HM++;
             }
 
+
+
             markalarSet.add(brandList.getBrands().get(i).getBrand());
 
         }
