@@ -51,7 +51,7 @@ public class API_US01_03 {
         for (int i = 0; i < productList.getProducts().size(); i++) {
             if (getPriceStringToInt(productList.getProducts().get(i).getPrice()) < 1000) {
                 System.out.println(getPriceStringToInt(productList.getProducts().get(i).getPrice()));
-                WriteToTxt.saveTitle("Log01", String.valueOf(getPriceStringToInt(productList.getProducts().get(i).getPrice())) + " , ");
+                WriteToTxt.saveTitle("bunyamin", String.valueOf(getPriceStringToInt(productList.getProducts().get(i).getPrice())) + " , ");
             }
         }
 
@@ -60,7 +60,7 @@ public class API_US01_03 {
                 .stream()
                 .map(t -> getPriceStringToInt(t.getPrice()))
                 .filter(t -> t < 1000)
-                .forEach(t -> WriteToTxt.saveTitle("Log02", t + " "));
+                .forEach(t -> WriteToTxt.saveTitle("bun", t + " "));
 
 
         // status code
@@ -110,16 +110,16 @@ public class API_US01_03 {
 
 
 
-//        Assertions.assertEquals(brandList.getBrands()
-//                .stream().filter(t -> t.getBrand()
-//                        .equals("Polo")).count(), 6);
-//        // hnm marka 5 tane
-//        Assertions.assertEquals(brandList.getBrands()
-//                .stream().filter(t -> t.getBrand()
-//                        .equals("H&M")).count(), 5);
-//        // 8 farkli urun cesidi
-//        Assertions.assertEquals(brandList.getBrands()
-//                .stream().map(Brand::getBrand).distinct().count(), 8);
+        Assertions.assertEquals(brandList.getBrands()
+                .stream().filter(t -> t.getBrand()
+                        .equals("Polo")).count(), 6);
+        // hnm marka 5 tane
+        Assertions.assertEquals(brandList.getBrands()
+                .stream().filter(t -> t.getBrand()
+                        .equals("H&M")).count(), 5);
+        // 8 farkli urun cesidi
+        Assertions.assertEquals(brandList.getBrands()
+                .stream().map(Brand::getBrand).distinct().count(), 8);
 
     }
 
