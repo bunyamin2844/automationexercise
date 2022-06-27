@@ -51,7 +51,7 @@ public class API_US01_03 {
         for (int i = 0; i < productList.getProducts().size(); i++) {
             if (getPriceStringToInt(productList.getProducts().get(i).getPrice()) < 1000) {
                 System.out.println(getPriceStringToInt(productList.getProducts().get(i).getPrice()));
-                WriteToTxt.saveTitle("bunyamin", String.valueOf(getPriceStringToInt(productList.getProducts().get(i).getPrice())) + " , ");
+                WriteToTxt.saveTitle("Log01", String.valueOf(getPriceStringToInt(productList.getProducts().get(i).getPrice())) + " , ");
             }
         }
 
@@ -60,7 +60,7 @@ public class API_US01_03 {
                 .stream()
                 .map(t -> getPriceStringToInt(t.getPrice()))
                 .filter(t -> t < 1000)
-                .forEach(t -> WriteToTxt.saveTitle("bun", t + " "));
+                .forEach(t -> WriteToTxt.saveTitle("Log02", t + " "));
 
 
         // status code
@@ -93,6 +93,8 @@ public class API_US01_03 {
             if (brandList.getBrands().get(i).getBrand().equals("H&M")) {
                 HM++;
             }
+
+
 
             markalarSet.add(brandList.getBrands().get(i).getBrand());
 
